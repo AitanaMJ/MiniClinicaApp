@@ -8,7 +8,10 @@ namespace MiniClinicaApp.Desktop.Models
 {
     internal class Datos
     {
-        public static List<Paciente> ListaPacientes { get; set; } = new List<Paciente>();
+       // public static List<Paciente> ListaPacientes { get; set; } = new List<Paciente>();
+       // public int proximoId = 1;
+
+
 
 
 
