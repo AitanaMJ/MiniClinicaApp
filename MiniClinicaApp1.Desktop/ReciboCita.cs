@@ -40,5 +40,10 @@ namespace MiniClinicaApp1.Desktop
             this.Hide();
             inicio.Show();
         }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

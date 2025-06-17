@@ -17,6 +17,8 @@ namespace MiniClinicaApp1.Desktop
         private List<Paciente> listaPacientes = new List<Paciente>();
         private int proximoId = 0;
         private int ultimoIdRegistrado = 0;
+
+        private List<Cita>listaCitas = new List<Cita>();       
         private int proximoId1 = 0;
         private int ultimoIdRegistrado1 = 0;
         public ClinicaInicio()
@@ -26,57 +28,61 @@ namespace MiniClinicaApp1.Desktop
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string nombreapellido = txtNombreApellido.Text;          
-            int IdPaciente = proximoId;
-            string edad = txtEdad.Text;
-            int edad1 = int.Parse(edad);
-            string dniPaciente = txtDni.Text;
-            int dni = int.Parse(dniPaciente);
+            string nombreyapellido = txtNombreApellido.Text;          
+            int idpaciente = proximoId;
+            int edad = int.Parse(txtEdad.Text);
+            int dni = int.Parse(txtDni.Text);
+            
 
             GrillaPacientes.Rows.Add(
-                IdPaciente, 
-                txtNombreApellido.Text,
-                txtEdad.Text, 
-                txtDni.Text);
+                idpaciente, 
+                nombreyapellido,
+                edad, 
+                dni);
 
             proximoId++;
-            ultimoIdRegistrado = IdPaciente;
+            ultimoIdRegistrado = idpaciente;
+
+            Paciente paciente = new Paciente(idpaciente,nombreyapellido,edad,dni);
+
         }
 
         private void btnAgendar_Click(object sender, EventArgs e)
         {
 
-            decimal precioConsulta;
+            decimal total;
 
-            if (decimal.TryParse(txtTotal.Text.Replace("$", "").Trim(), out precioConsulta))
+            if (decimal.TryParse(txtTotal.Text.Replace("$", "").Trim(), out total))
             {
-                // Mostrar el valor como moneda (con $)
-                txtTotal.Text = precioConsulta.ToString("C");
+                
+                txtTotal.Text = total.ToString("C");
 
-                // Podés usar precioConsulta con seguridad
+               
             }
-            else
-            {
-                MessageBox.Show("El valor ingresado no es un número válido.");
-            }
-
+            
 
             int idCita = proximoId1;
-            string motivoconsulta = txtMotivoConsulta.Text;
-           
-            Text = comboBox1Medico.Text;
+            string motivo = txtMotivoConsulta.Text;
+            DateTime fecha = dateTimePicker1.Value;
+            DateTime hora = dateTimePicker2.Value;
+
+
+            string medico = comboBox1Medico.Text;
             
 
             GrillaCitas.Rows.Add(
-                idCita, 
-                txtMotivoConsulta.Text, 
-                comboBox1Medico.Text, 
-                dateTimePicker1.Value.ToString("dd/MM/yyyy"),
-                dateTimePicker2.Value.ToString("HH:mm tt"),
-            precioConsulta.ToString("C"));
+               idCita, 
+               motivo,
+               medico, 
+               fecha.ToString("dd/MM/yyyy "),
+               hora.ToString("HH:mm tt"),
+
+            total.ToString("C"));
 
             proximoId1++;
             ultimoIdRegistrado1 = idCita;
+
+            Cita nuevaCita = new Cita(idCita, motivo, fecha, hora, total, medico);
 
         }
 
@@ -136,6 +142,29 @@ namespace MiniClinicaApp1.Desktop
 
         }
 
-        
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GrillaPacientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

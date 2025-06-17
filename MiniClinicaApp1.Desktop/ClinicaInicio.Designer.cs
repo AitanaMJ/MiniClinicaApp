@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClinicaInicio));
             this.GrillaPacientes = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,7 +69,7 @@
             // 
             // GrillaPacientes
             // 
-            this.GrillaPacientes.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.GrillaPacientes.BackgroundColor = System.Drawing.SystemColors.ButtonShadow;
             this.GrillaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GrillaPacientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -76,10 +77,11 @@
             this.Column3,
             this.Column4});
             this.GrillaPacientes.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.GrillaPacientes.Location = new System.Drawing.Point(328, 59);
+            this.GrillaPacientes.Location = new System.Drawing.Point(363, 54);
             this.GrillaPacientes.Name = "GrillaPacientes";
-            this.GrillaPacientes.Size = new System.Drawing.Size(444, 105);
+            this.GrillaPacientes.Size = new System.Drawing.Size(444, 125);
             this.GrillaPacientes.TabIndex = 0;
+            this.GrillaPacientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrillaPacientes_CellContentClick);
             // 
             // Column1
             // 
@@ -103,7 +105,6 @@
             // 
             // GrillaCitas
             // 
-            this.GrillaCitas.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.GrillaCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GrillaCitas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column5,
@@ -113,9 +114,9 @@
             this.Column10,
             this.Column9});
             this.GrillaCitas.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.GrillaCitas.Location = new System.Drawing.Point(328, 220);
+            this.GrillaCitas.Location = new System.Drawing.Point(363, 220);
             this.GrillaCitas.Name = "GrillaCitas";
-            this.GrillaCitas.Size = new System.Drawing.Size(444, 112);
+            this.GrillaCitas.Size = new System.Drawing.Size(444, 135);
             this.GrillaCitas.TabIndex = 1;
             // 
             // Column5
@@ -193,11 +194,11 @@
             this.btnAgregar.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnAgregar.FlatAppearance.BorderSize = 0;
             this.btnAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.btnAgregar.Location = new System.Drawing.Point(18, 170);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(108, 22);
+            this.btnAgregar.Size = new System.Drawing.Size(114, 27);
             this.btnAgregar.TabIndex = 8;
             this.btnAgregar.Text = "Agregar Paciente";
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -206,11 +207,11 @@
             // btnAgendar
             // 
             this.btnAgendar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAgendar.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgendar.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgendar.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.btnAgendar.Location = new System.Drawing.Point(12, 401);
             this.btnAgendar.Name = "btnAgendar";
-            this.btnAgendar.Size = new System.Drawing.Size(120, 23);
+            this.btnAgendar.Size = new System.Drawing.Size(105, 26);
             this.btnAgendar.TabIndex = 9;
             this.btnAgendar.Text = "Agendar Cita";
             this.btnAgendar.UseVisualStyleBackColor = false;
@@ -232,11 +233,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label1.Location = new System.Drawing.Point(34, 66);
+            this.label1.Location = new System.Drawing.Point(37, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 14);
+            this.label1.Size = new System.Drawing.Size(99, 17);
             this.label1.TabIndex = 11;
             this.label1.Text = "Nombre y Apellido";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -245,11 +246,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.label2.Location = new System.Drawing.Point(107, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 14);
+            this.label2.Size = new System.Drawing.Size(30, 17);
             this.label2.TabIndex = 12;
             this.label2.Text = "Edad";
             // 
@@ -257,22 +258,22 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.label3.Location = new System.Drawing.Point(113, 124);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 14);
+            this.label3.Size = new System.Drawing.Size(23, 17);
             this.label3.TabIndex = 13;
             this.label3.Text = "Dni";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label4.Location = new System.Drawing.Point(34, 224);
+            this.label4.Location = new System.Drawing.Point(39, 223);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 14);
+            this.label4.Size = new System.Drawing.Size(101, 17);
             this.label4.TabIndex = 14;
             this.label4.Text = "Motivo de Consulta";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -280,24 +281,25 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label5.Location = new System.Drawing.Point(85, 249);
+            this.label5.Location = new System.Drawing.Point(86, 246);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 14);
+            this.label5.Size = new System.Drawing.Size(49, 17);
             this.label5.TabIndex = 15;
             this.label5.Text = "Medicos";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label6.Location = new System.Drawing.Point(34, 305);
+            this.label6.Location = new System.Drawing.Point(37, 299);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 14);
+            this.label6.Size = new System.Drawing.Size(39, 17);
             this.label6.TabIndex = 16;
             this.label6.Text = "Fecha ";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // menuStrip1
             // 
@@ -307,7 +309,7 @@
             this.reciboDeCitaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(853, 24);
             this.menuStrip1.TabIndex = 19;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -330,11 +332,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label7.Location = new System.Drawing.Point(105, 355);
+            this.label7.Location = new System.Drawing.Point(107, 353);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 14);
+            this.label7.Size = new System.Drawing.Size(33, 17);
             this.label7.TabIndex = 20;
             this.label7.Text = "Total";
             // 
@@ -348,11 +350,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Agency FB", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label8.Location = new System.Drawing.Point(34, 331);
+            this.label8.Location = new System.Drawing.Point(38, 325);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 14);
+            this.label8.Size = new System.Drawing.Size(31, 17);
             this.label8.TabIndex = 22;
             this.label8.Text = "Hora";
             // 
@@ -372,7 +374,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(853, 463);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtTotal);
