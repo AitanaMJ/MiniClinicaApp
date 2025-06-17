@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniClinicaApp.Api.Data;
 
@@ -11,9 +12,11 @@ using MiniClinicaApp.Api.Data;
 namespace MiniClinicaApp.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250612002403_AddPrecioConsultaToCita")]
+    partial class AddPrecioConsultaToCita
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,6 @@ namespace MiniClinicaApp.Api.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<decimal>("PrecioConsulta")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("PacienteId");

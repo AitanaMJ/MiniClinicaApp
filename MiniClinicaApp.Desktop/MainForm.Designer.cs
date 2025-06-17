@@ -100,6 +100,7 @@
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(100, 23);
             txtDni.TabIndex = 9;
+            txtDni.TextChanged += txtDni_TextChanged;
             // 
             // txtEdad
             // 
@@ -164,9 +165,9 @@
             grillaPacientes.BackgroundColor = SystemColors.ButtonFace;
             grillaPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grillaPacientes.Columns.AddRange(new DataGridViewColumn[] { Column1ID, Column2NombreApellido, Column3Edad, Column4 });
-            grillaPacientes.Location = new Point(6, 22);
+            grillaPacientes.Location = new Point(22, 22);
             grillaPacientes.Name = "grillaPacientes";
-            grillaPacientes.Size = new Size(283, 150);
+            grillaPacientes.Size = new Size(246, 150);
             grillaPacientes.TabIndex = 0;
             grillaPacientes.CellContentClick += grillaPacientes_CellContentClick;
             // 
@@ -229,6 +230,7 @@
             comboBox1Medico.Name = "comboBox1Medico";
             comboBox1Medico.Size = new Size(121, 24);
             comboBox1Medico.TabIndex = 15;
+            comboBox1Medico.SelectedIndexChanged += comboBox1Medico_SelectedIndexChanged;
             // 
             // dateTimePicker1
             // 

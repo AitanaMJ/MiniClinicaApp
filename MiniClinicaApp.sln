@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36127.28 d17.14
+VisualStudioVersion = 17.14.36127.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniClinicaApp.Api", "MiniClinicaApp.Api\MiniClinicaApp.Api.csproj", "{7898599A-3692-4D31-9E86-8ADFB92D7347}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniClinicaApp.Desktop", "MiniClinicaApp.Desktop\MiniClinicaApp.Desktop.csproj", "{7E385625-B625-4C33-B214-A97C5EF16DE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniClinicaApp1.Desktop", "MiniClinicaApp1.Desktop\MiniClinicaApp1.Desktop.csproj", "{F1796E49-6230-4A07-A178-1B8B443980FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{7898599A-3692-4D31-9E86-8ADFB92D7347}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7898599A-3692-4D31-9E86-8ADFB92D7347}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7898599A-3692-4D31-9E86-8ADFB92D7347}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E385625-B625-4C33-B214-A97C5EF16DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E385625-B625-4C33-B214-A97C5EF16DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E385625-B625-4C33-B214-A97C5EF16DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E385625-B625-4C33-B214-A97C5EF16DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1796E49-6230-4A07-A178-1B8B443980FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1796E49-6230-4A07-A178-1B8B443980FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1796E49-6230-4A07-A178-1B8B443980FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1796E49-6230-4A07-A178-1B8B443980FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

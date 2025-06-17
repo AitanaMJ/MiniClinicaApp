@@ -102,5 +102,15 @@ namespace MiniClinicaApp.Desktop
         {
 
         }
+
+        private void txtDni_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1Medico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
