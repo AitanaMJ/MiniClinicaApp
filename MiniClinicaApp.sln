@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36127.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniClinicaApp.Api", "MiniClinicaApp.Api\MiniClinicaApp.Api.csproj", "{7898599A-3692-4D31-9E86-8ADFB92D7347}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F1796E49-6230-4A07-A178-1B8B443980FD} = {F1796E49-6230-4A07-A178-1B8B443980FD}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniClinicaApp1.Desktop", "MiniClinicaApp1.Desktop\MiniClinicaApp1.Desktop.csproj", "{F1796E49-6230-4A07-A178-1B8B443980FD}"
 EndProject

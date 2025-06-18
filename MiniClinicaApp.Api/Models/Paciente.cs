@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MiniClinicaApp.Api.Models;
 
 namespace MiniClinicaApp.Api.Models
 {
@@ -9,8 +10,8 @@ namespace MiniClinicaApp.Api.Models
         [MaxLength(50, ErrorMessage = "El campo {0} debe tener maximo {1} caracteres.")]
         public string NombreyApellido { get; set; } = "";
         public int Edad { get; set; }
-        public int dni { get; set; } 
+        public int dni { get; set; }
 
-        //public ICollection<Cita>? Citas { get; set; }
+        
     }
 }

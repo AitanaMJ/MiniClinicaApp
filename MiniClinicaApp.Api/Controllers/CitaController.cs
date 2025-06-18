@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MiniClinicaApp.Api.Data;
 using MiniClinicaApp.Api.Models;
@@ -10,70 +9,88 @@ namespace MiniClinicaApp.Api.Controllers
     [ApiController]
     public class CitaController : ControllerBase
     {
+        private readonly AppDbContext _context;
 
-        private readonly AppDbContext context;
-        private AppDbContext _context;
-
-       
         public CitaController(AppDbContext context)
         {
             _context = context;
         }
-        [HttpPost]
-        [Route("Crear")]
-        public async Task<IActionResult> CrearCita(Cita cita)
+        // POST: api/Cita/Crear
+        [HttpPost("Crear")]
+        public async Task<IActionResult> CrearCita([FromBody] Cita cita)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            // Opcional: verifica que el MedicoId exista antes de guardar
+            var medicoExistente = await _context.Medicos.FindAsync(cita.MedicoId);
+            if (medicoExistente == null)
+                return BadRequest($"No existe el médico con ID {cita.MedicoId}");
+
             await _context.Citas.AddAsync(cita);
             await _context.SaveChangesAsync();
 
-            return Ok();
+            return CreatedAtAction(nameof(VerCita), new { id = cita.Id }, cita);
         }
 
-        [HttpGet]
-        [Route("lista")]
-        public async Task<ActionResult<IEnumerable<Cita>>> ListaCita()
+        // GET: api/Cita/Lista
+        [HttpGet("Lista")]
+        public async Task<ActionResult<IEnumerable<Cita>>> ListaCitas()
         {
-            var paciente = await _context.Citas.ToListAsync();
-
-            return Ok(paciente);
+            var citas = await _context.Citas.Include(c => c.Medico).ToListAsync();
+            return Ok(citas);
         }
 
-        [HttpGet]
-        [Route("Ver")]
-        public async Task<IActionResult> VerCita(int PacienteId)
+        // GET: api/Cita/Ver/5
+        [HttpGet("Ver/{id}")]
+        public async Task<IActionResult> VerCita(int id)
         {
-            Cita cita = await _context.Citas.FindAsync(PacienteId);
+            var cita = await _context.Citas.Include(c => c.Medico).FirstOrDefaultAsync(c => c.Id == id);
 
             if (cita == null)
-            {
-                return NotFound();
-            }
+                return NotFound($"No se encontró la cita con ID {id}");
+
             return Ok(cita);
         }
 
-        [HttpPut]
-        [Route("Editar")]
-        public async Task<IActionResult> ActualizarCita(int PacienteId, Cita cita)
-        {
-            var citaExistente = await _context.Citas.FindAsync(PacienteId);
+       
 
-            citaExistente!.MotivoConsulta = cita.MotivoConsulta;
-            citaExistente.Medico = cita.Medico;
+        // PUT: api/Cita/Editar/5
+        [HttpPut("Editar/{id}")]
+        public async Task<IActionResult> ActualizarCita(int id, [FromBody] Cita cita)
+        {
+            if (id != cita.Id)
+                return BadRequest("El ID de la cita no coincide.");
+
+            var citaExistente = await _context.Citas.FindAsync(id);
+
+            if (citaExistente == null)
+                return NotFound($"No se encontró la cita con ID {id}");
+
+            // Actualizar campos
+            citaExistente.MotivoConsulta = cita.MotivoConsulta;
             citaExistente.Fecha = cita.Fecha;
+            citaExistente.PrecioConsulta = cita.PrecioConsulta;
+            citaExistente.MedicoId = cita.MedicoId;
 
             await _context.SaveChangesAsync();
-            return Ok();
+
+            return Ok(citaExistente);
         }
-        [HttpDelete]
-        [Route("Eliminar")]
-        public async Task<IActionResult> EliminarCita(int Pacienteid)
+
+        // DELETE: api/Cita/Eliminar/5
+        [HttpDelete("Eliminar/{id}")]
+        public async Task<IActionResult> EliminarCita(int id)
         {
-            var citaBorrada = await _context.Citas.FindAsync(Pacienteid);
+            var cita = await _context.Citas.FindAsync(id);
 
-            _context.Citas.Remove(citaBorrada!);
+            if (cita == null)
+                return NotFound($"No se encontró la cita con ID {id}");
 
+            _context.Citas.Remove(cita);
             await _context.SaveChangesAsync();
-            return Ok();
-       }
+
+            return Ok($"Cita con ID {id} eliminada correctamente.");
+        }
     }
 }

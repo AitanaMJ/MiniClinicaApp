@@ -10,7 +10,7 @@ namespace MiniClinicaApp.Api.Data
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Cita> Citas { get; set; }
        
-           
+        public DbSet<Medico> Medicos { get; set; }
 
 
 
@@ -22,7 +22,19 @@ namespace MiniClinicaApp.Api.Data
                 .Property(c => c.PrecioConsulta)
                 .HasPrecision(18, 2); // <- Esto evita truncamientos
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Cita>()
+               .HasOne(c => c.Medico)
+               .WithMany(m => m.Citas)
+               .HasForeignKey(c => c.MedicoId);
+
+            modelBuilder.Entity<Medico>().HasData(
+            new Medico { Id = 1, Nombre = "Dr. Castillo" },
+            new Medico { Id = 2, Nombre = "Dra. Hernandez" },
+            new Medico { Id = 3, Nombre = "Dr. Molina" });
+
+
+           base.OnModelCreating(modelBuilder);
         }
+
     }
 }

@@ -12,34 +12,32 @@ using MiniClinicaApp.Api.Data;
 namespace MiniClinicaApp.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250612002757_SetPrecioConsultaPrecision")]
-    partial class SetPrecioConsultaPrecision
+    [Migration("20250618184949_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("MiniClinicaApp.Api.Models.Cita", b =>
                 {
-                    b.Property<int>("PacienteId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PacienteId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Medico")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("MedicoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("MotivoConsulta")
                         .IsRequired()
@@ -50,9 +48,45 @@ namespace MiniClinicaApp.Api.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("PacienteId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicoId");
 
                     b.ToTable("Citas");
+                });
+
+            modelBuilder.Entity("MiniClinicaApp.Api.Models.Medico", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Medicos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Dr. Castillo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Dra. Hernandez"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Dr. Molina"
+                        });
                 });
 
             modelBuilder.Entity("MiniClinicaApp.Api.Models.Paciente", b =>
@@ -77,6 +111,22 @@ namespace MiniClinicaApp.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pacientes");
+                });
+
+            modelBuilder.Entity("MiniClinicaApp.Api.Models.Cita", b =>
+                {
+                    b.HasOne("MiniClinicaApp.Api.Models.Medico", "Medico")
+                        .WithMany("Citas")
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medico");
+                });
+
+            modelBuilder.Entity("MiniClinicaApp.Api.Models.Medico", b =>
+                {
+                    b.Navigation("Citas");
                 });
 #pragma warning restore 612, 618
         }
