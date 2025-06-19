@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniClinicaApp.Api", "MiniC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniClinicaApp1.Desktop", "MiniClinicaApp1.Desktop\MiniClinicaApp1.Desktop.csproj", "{F1796E49-6230-4A07-A178-1B8B443980FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp1.Desktop", "WinFormsApp1.Desktop\WinFormsApp1.Desktop.csproj", "{1547EA8F-27A2-42EC-9498-CBF7BBF02BC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{F1796E49-6230-4A07-A178-1B8B443980FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1796E49-6230-4A07-A178-1B8B443980FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1796E49-6230-4A07-A178-1B8B443980FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1547EA8F-27A2-42EC-9498-CBF7BBF02BC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1547EA8F-27A2-42EC-9498-CBF7BBF02BC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1547EA8F-27A2-42EC-9498-CBF7BBF02BC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1547EA8F-27A2-42EC-9498-CBF7BBF02BC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
