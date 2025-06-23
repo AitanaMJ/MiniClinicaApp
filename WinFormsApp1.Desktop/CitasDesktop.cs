@@ -2,7 +2,7 @@ using WinFormsApp1.Desktop.Models;
 
 namespace WinFormsApp1.Desktop
 {
-    public partial class Form1 : Form
+    public partial class CitasDesktop : Form
     {
         private List<Paciente> pacientes = new List<Paciente>();
         private int proximoId = 0;
@@ -11,7 +11,7 @@ namespace WinFormsApp1.Desktop
         private List<Cita> cita = new List<Cita>();
         private int proximoId1 = 0;
         private int ultimoIdRegistrado1 = 0;
-        public Form1()
+        public CitasDesktop()
         {
             InitializeComponent();
         }

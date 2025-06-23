@@ -37,8 +37,9 @@ namespace MiniClinicaApp.Api.Controllers
         [HttpGet("Lista")]
         public async Task<ActionResult<IEnumerable<Cita>>> ListaCitas()
         {
-            var citas = await _context.Citas.Include(c => c.Medico).ToListAsync();
-            return Ok(citas);
+            return await _context.Citas
+               .Include(c => c.Medico) 
+               .ToListAsync();
         }
 
         // GET: api/Cita/Ver/5

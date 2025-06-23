@@ -33,5 +33,10 @@ namespace WinFormsApp1.Desktop
             this.Hide();
             form.Show();
         }
+
+        private void Recibo_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp1.Desktop
 {
-    partial class Form1
+    partial class CitasDesktop
     {
         /// <summary>
         ///  Required designer variable.

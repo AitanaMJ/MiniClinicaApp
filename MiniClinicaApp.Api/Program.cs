@@ -1,9 +1,18 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using MiniClinicaApp.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.PropertyNamingPolicy = null; // Para mantener nombres originales
+    });
+
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(o =>

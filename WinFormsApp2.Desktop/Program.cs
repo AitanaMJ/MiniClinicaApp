@@ -1,4 +1,8 @@
-namespace WinFormsApp1.Desktop
+
+using WinFormsApp1.Desktop;
+using WinFormsApp2.Desktop.Models;
+
+namespace WinFormsApp2.Desktop
 {
     internal static class Program
     {
