@@ -27,6 +27,10 @@ namespace MiniClinicaApp.Api.Controllers
             if (medicoExistente == null)
                 return BadRequest($"No existe el médico con ID {cita.MedicoId}");
 
+            var pacienteExistente = await _context.Pacientes.FindAsync(cita.PacienteId);
+            if (pacienteExistente == null)
+                return BadRequest($"No existe el paciente con ID {cita.PacienteId}");
+
             await _context.Citas.AddAsync(cita);
             await _context.SaveChangesAsync();
 
@@ -38,7 +42,8 @@ namespace MiniClinicaApp.Api.Controllers
         public async Task<ActionResult<IEnumerable<Cita>>> ListaCitas()
         {
             return await _context.Citas
-               .Include(c => c.Medico) 
+               .Include(c => c.Medico)
+               .Include(c => c.Paciente)
                .ToListAsync();
         }
 
@@ -46,7 +51,10 @@ namespace MiniClinicaApp.Api.Controllers
         [HttpGet("Ver/{id}")]
         public async Task<IActionResult> VerCita(int id)
         {
-            var cita = await _context.Citas.Include(c => c.Medico).FirstOrDefaultAsync(c => c.Id == id);
+            var cita = await _context.Citas.
+                Include(c => c.Medico)
+                .Include(c => c.Paciente)
+                .FirstOrDefaultAsync(c => c.Id == id);
 
             if (cita == null)
                 return NotFound($"No se encontró la cita con ID {id}");
@@ -74,6 +82,7 @@ namespace MiniClinicaApp.Api.Controllers
             citaExistente.Hora = cita.Hora;
             citaExistente.PrecioConsulta = cita.PrecioConsulta;
             citaExistente.MedicoId = cita.MedicoId;
+            citaExistente.PacienteId = cita.PacienteId;
 
             await _context.SaveChangesAsync();
 

@@ -60,6 +60,8 @@ namespace MiniClinicaaApp2.Desktop
             button1 = new Button();
             tabPage2 = new TabPage();
             groupBox2 = new GroupBox();
+            label11 = new Label();
+            comboBoxPacientes = new ComboBox();
             tabPage3 = new TabPage();
             label10 = new Label();
             label9 = new Label();
@@ -103,7 +105,7 @@ namespace MiniClinicaaApp2.Desktop
             comboBoxMedicos.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBoxMedicos.FormattingEnabled = true;
             comboBoxMedicos.Items.AddRange(new object[] { "1. Dr Castillo", "2. Dra Hernandez", "3. Dr  Molina" });
-            comboBoxMedicos.Location = new Point(131, 66);
+            comboBoxMedicos.Location = new Point(91, 62);
             comboBoxMedicos.Name = "comboBoxMedicos";
             comboBoxMedicos.Size = new Size(121, 21);
             comboBoxMedicos.TabIndex = 10;
@@ -141,7 +143,7 @@ namespace MiniClinicaaApp2.Desktop
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Verdana", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label5.Location = new Point(73, 70);
+            label5.Location = new Point(33, 69);
             label5.Name = "label5";
             label5.Size = new Size(52, 13);
             label5.TabIndex = 15;
@@ -183,7 +185,7 @@ namespace MiniClinicaaApp2.Desktop
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Verdana", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label7.Location = new Point(291, 70);
+            label7.Location = new Point(285, 72);
             label7.Name = "label7";
             label7.Size = new Size(34, 13);
             label7.TabIndex = 28;
@@ -394,6 +396,8 @@ namespace MiniClinicaaApp2.Desktop
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(label11);
+            groupBox2.Controls.Add(comboBoxPacientes);
             groupBox2.Controls.Add(textBox5);
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(button4);
@@ -414,6 +418,26 @@ namespace MiniClinicaaApp2.Desktop
             groupBox2.TabIndex = 29;
             groupBox2.TabStop = false;
             groupBox2.Text = "Datos";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Verdana", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label11.Location = new Point(463, 66);
+            label11.Name = "label11";
+            label11.Size = new Size(55, 13);
+            label11.TabIndex = 30;
+            label11.Text = "Paciente";
+            // 
+            // comboBoxPacientes
+            // 
+            comboBoxPacientes.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBoxPacientes.FormattingEnabled = true;
+            comboBoxPacientes.Location = new Point(521, 61);
+            comboBoxPacientes.Name = "comboBoxPacientes";
+            comboBoxPacientes.Size = new Size(121, 21);
+            comboBoxPacientes.TabIndex = 29;
+            comboBoxPacientes.SelectedIndexChanged += comboBoxPacientes_SelectedIndexChanged;
             // 
             // tabPage3
             // 
@@ -571,5 +595,7 @@ namespace MiniClinicaaApp2.Desktop
         private Label lblTotalCitas;
         private Label label10;
         private Label label9;
+        private Label label11;
+        private ComboBox comboBoxPacientes;
     }
 }

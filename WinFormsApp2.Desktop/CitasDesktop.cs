@@ -16,12 +16,10 @@ namespace MiniClinicaaApp2.Desktop
 
 
         private List<Paciente> pacientes = new List<Paciente>();
-        private int proximoId = 0;
-        private int ultimoIdRegistrado = 0;
+
         //...................................
         private List<CitaDesktop> cita = new List<CitaDesktop>();
-        private int proximoId1 = 0;
-        private int ultimoIdRegistrado1 = 0;
+
         public CitasDesktop()
         {
             InitializeComponent();
@@ -37,17 +35,22 @@ namespace MiniClinicaaApp2.Desktop
             try
             {
                 using HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("https://localhost:7032/"); // 
+                client.BaseAddress = new Uri("https://localhost:7032/");
 
                 var medicos = await client.GetFromJsonAsync<List<MedicoDesktop>>("api/Medico");
 
-                // Insertar opción "Todos"
+                if (medicos == null)
+                {
+                    MessageBox.Show("No se pudieron obtener los médicos desde la API.");
+                    return;
+                }
+
                 medicos.Insert(0, new MedicoDesktop { Id = 0, Nombre = "Todos" });
 
                 cmbFiltroMedico.DataSource = medicos;
                 cmbFiltroMedico.DisplayMember = "Nombre";
                 cmbFiltroMedico.ValueMember = "Id";
-               
+
             }
             catch (Exception ex)
             {
@@ -72,6 +75,7 @@ namespace MiniClinicaaApp2.Desktop
                 {
                     MessageBox.Show("Paciente registrado con éxito.");
                     await CargarPacientes();
+                    await CargarPacientesEnComboBoxAsync();
                 }
                 else
                 {
@@ -110,7 +114,9 @@ namespace MiniClinicaaApp2.Desktop
                 Fecha = dateTimePicker1.Value,
                 Hora = dateTimePicker2.Value.TimeOfDay,
                 PrecioConsulta = decimal.Parse(textBox5.Text),
-                MedicoId = (int)comboBoxMedicos.SelectedValue
+                MedicoId = comboBoxMedicos.SelectedValue != null ? (int)comboBoxMedicos.SelectedValue : 0,
+                PacienteId = (int)comboBoxPacientes.SelectedValue
+
             };
 
             try
@@ -140,6 +146,14 @@ namespace MiniClinicaaApp2.Desktop
             try
             {
                 var citas = await client.GetFromJsonAsync<List<CitaDesktop>>("api/Cita/Lista");
+
+
+                if (citas == null)
+                {
+                    MessageBox.Show("No se pudieron obtener las citas desde la API.");
+                    return;
+                }
+
                 dataGridView2.DataSource = citas.Select(c => new
                 {
                     c.Id,
@@ -157,7 +171,7 @@ namespace MiniClinicaaApp2.Desktop
         }
 
 
-       
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -186,6 +200,7 @@ namespace MiniClinicaaApp2.Desktop
             await CargarCitas();
             await CargarPacientes();
             await CargarMedicosEnComboBoxAsync();
+            await CargarPacientesEnComboBoxAsync();
         }
 
         private async void button3_Click(object sender, EventArgs e)
@@ -279,7 +294,7 @@ namespace MiniClinicaaApp2.Desktop
                     MotivoConsulta = textBox4.Text,
                     Fecha = dateTimePicker1.Value,
                     PrecioConsulta = decimal.Parse(textBox5.Text),
-                    MedicoId = (int)comboBoxMedicos.SelectedValue
+                    MedicoId = comboBoxMedicos.SelectedValue != null ? (int)comboBoxMedicos.SelectedValue : 0
                 };
 
                 var response = await client.PutAsJsonAsync($"api/Cita/Editar/{id}", citaEditada);
@@ -303,6 +318,12 @@ namespace MiniClinicaaApp2.Desktop
             {
                 var todasLasCitas = await client.GetFromJsonAsync<List<CitaDesktop>>("api/Cita/Lista");
 
+                if (todasLasCitas == null)
+                {
+                    MessageBox.Show("No se pudieron obtener las citas desde la API.");
+                    return;
+                }
+
                 var fechaSeleccionada = dtpFiltroFecha.Value.Date;
                 var medicoIdSeleccionado = (int?)cmbFiltroMedico.SelectedValue;
 
@@ -314,7 +335,9 @@ namespace MiniClinicaaApp2.Desktop
                 dataGridView3.DataSource = filtro.Select(c => new
                 {
                     c.Id,
+                    Paciente = c.Paciente?.NombreyApellido ?? "Sin paciente",
                     c.MotivoConsulta,
+
                     Fecha = c.Fecha.Add(c.Hora).ToString("dd/MM/yyyy HH:mm"),
                     Precio = c.PrecioConsulta.ToString("C"),
                     Medico = c.Medico?.Nombre ?? "Sin médico"
@@ -329,7 +352,7 @@ namespace MiniClinicaaApp2.Desktop
             }
         }
 
-        
+
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -369,7 +392,34 @@ namespace MiniClinicaaApp2.Desktop
         {
 
         }
+        private async Task CargarPacientesEnComboBoxAsync()
+        {
+            try
+            {
+                using HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("https://localhost:7032/"); 
 
-        
+                var pacientes = await client.GetFromJsonAsync<List<Paciente>>("api/Paciente/Lista");
+
+                if (pacientes == null)
+                {
+                    MessageBox.Show("No se pudieron obtener los pacientes.");
+                    return;
+                }
+
+                comboBoxPacientes.DataSource = pacientes;
+                comboBoxPacientes.DisplayMember = "NombreyApellido";  
+                comboBoxPacientes.ValueMember = "Id";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar pacientes: " + ex.Message);
+            }
+        }
+
+        private void comboBoxPacientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
