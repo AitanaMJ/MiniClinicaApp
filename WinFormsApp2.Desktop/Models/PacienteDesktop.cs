@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinFormsApp2.Desktop.Models
+namespace MiniClinicaaApp2.Desktop.Models
 {
     public class Paciente
     {

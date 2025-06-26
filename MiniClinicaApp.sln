@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36127.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniClinicaApp.Api", "MiniClinicaApp.Api\MiniClinicaApp.Api.csproj", "{7898599A-3692-4D31-9E86-8ADFB92D7347}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp2.Desktop", "WinFormsApp2.Desktop\WinFormsApp2.Desktop.csproj", "{BC5CB8DD-19E1-48F8-B40A-D7D4A3E5AA43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniClinicaaApp2.Desktop", "WinFormsApp2.Desktop\MiniClinicaaApp2.Desktop.csproj", "{BC5CB8DD-19E1-48F8-B40A-D7D4A3E5AA43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -71,6 +71,7 @@ namespace MiniClinicaApp.Api.Controllers
             // Actualizar campos
             citaExistente.MotivoConsulta = cita.MotivoConsulta;
             citaExistente.Fecha = cita.Fecha;
+            citaExistente.Hora = cita.Hora;
             citaExistente.PrecioConsulta = cita.PrecioConsulta;
             citaExistente.MedicoId = cita.MedicoId;
 

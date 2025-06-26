@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using MiniClinicaApp.Api.Models;
 
-namespace WinFormsApp2.Desktop.Models
+namespace MiniClinicaaApp2.Desktop.Models
 {
     public class CitaDesktop
     {
@@ -19,6 +20,7 @@ namespace WinFormsApp2.Desktop.Models
 
         public DateTime Fecha { get; set; }
 
+        public TimeSpan Hora { get; set; }
         public decimal PrecioConsulta { get; set; }
 
         public int MedicoId { get; set; }

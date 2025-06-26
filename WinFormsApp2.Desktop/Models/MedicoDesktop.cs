@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MiniClinicaaApp2.Desktop.Models;
 
-namespace WinFormsApp2.Desktop.Models
+namespace MiniClinicaaApp2.Desktop
 {
-    public class Medico
+    public class MedicoDesktop
     {
-        public int Id { get; set; } // Agrega un Id si usarás EF Core
+        public int Id { get; set; } 
 
         public string Nombre { get; set; } = string.Empty;
 

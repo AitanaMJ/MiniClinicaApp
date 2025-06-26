@@ -1,8 +1,7 @@
 
-using WinFormsApp1.Desktop;
-using WinFormsApp2.Desktop.Models;
+using MiniClinicaaApp2.Desktop.Models;
 
-namespace WinFormsApp2.Desktop
+namespace MiniClinicaaApp2.Desktop
 {
     internal static class Program
     {

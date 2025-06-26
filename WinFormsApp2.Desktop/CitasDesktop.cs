@@ -1,14 +1,17 @@
 using System.Text.Json;
 using System.Net.Http.Json;
-using WinFormsApp2.Desktop.Models;
+using MiniClinicaaApp2.Desktop.Models;
+using MiniClinicaApp.Api.Migrations;
+using MiniClinicaApp.Api.Models;
+using Paciente = MiniClinicaaApp2.Desktop.Models.Paciente;
 
-namespace WinFormsApp1.Desktop
+namespace MiniClinicaaApp2.Desktop
 {
     public partial class CitasDesktop : Form
     {
         private static readonly HttpClient client = new HttpClient
         {
-            BaseAddress = new Uri("https://localhost:7032/") // O el puerto de tu API real
+            BaseAddress = new Uri("https://localhost:7032/") // 
         };
 
 
@@ -29,6 +32,29 @@ namespace WinFormsApp1.Desktop
 
         }
 
+        private async Task CargarMedicosEnComboBoxAsync()
+        {
+            try
+            {
+                using HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("https://localhost:7032/"); // ajustá el puerto si es distinto
+
+                var medicos = await client.GetFromJsonAsync<List<MedicoDesktop>>("api/Medico");
+
+                // Insertar opción "Todos"
+                medicos.Insert(0, new MedicoDesktop { Id = 0, Nombre = "Todos" });
+
+                cmbFiltroMedico.DataSource = medicos;
+                cmbFiltroMedico.DisplayMember = "Nombre";
+                cmbFiltroMedico.ValueMember = "Id";
+                cmbFiltroMedico.SelectedIndex = 0; // opción "Todos"
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar médicos: " + ex.Message);
+            }
+        }
+
         private async void button1_Click(object sender, EventArgs e)
         {
             var nuevoPaciente = new Paciente
@@ -45,7 +71,7 @@ namespace WinFormsApp1.Desktop
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Paciente registrado con éxito.");
-                    await CargarPacientes(); // Si querés mostrar la lista actualizada
+                    await CargarPacientes();
                 }
                 else
                 {
@@ -82,6 +108,7 @@ namespace WinFormsApp1.Desktop
             {
                 MotivoConsulta = textBox4.Text,
                 Fecha = dateTimePicker1.Value,
+                Hora = dateTimePicker2.Value.TimeOfDay,
                 PrecioConsulta = decimal.Parse(textBox5.Text),
                 MedicoId = (int)comboBoxMedicos.SelectedValue
             };
@@ -93,6 +120,7 @@ namespace WinFormsApp1.Desktop
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Cita registrada con éxito.");
+                    await CargarCitas();
                 }
                 else
                 {
@@ -117,6 +145,7 @@ namespace WinFormsApp1.Desktop
                     c.Id,
                     c.MotivoConsulta,
                     Fecha = c.Fecha.ToString("dd/MM/yyyy HH:mm"),
+                    Hora = c.Hora.ToString(@"hh\:mm"),
                     Precio = c.PrecioConsulta.ToString("C"),
                     Medico = c.Medico?.Nombre ?? "Sin médico"
                 }).ToList();
@@ -128,30 +157,7 @@ namespace WinFormsApp1.Desktop
         }
 
 
-        private void reciboDeCitaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Recibo recibo = new Recibo();
-            int idActual = ultimoIdRegistrado;
-            recibo.label9.Text = idActual.ToString("D6");
-            recibo.label1.Text = this.textBox1.Text;
-            recibo.label3.Text = this.textBox3.Text;
-            recibo.label4.Text = this.dateTimePicker1.Value.ToString("dd/MM/yyyy");
-
-            recibo.label6.Text = this.comboBoxMedicos.Text;
-            recibo.label7.Text = this.textBox5.Text;
-
-            string fechaEmision = DateTime.Now.ToString("dd/MM/yyyy 'a las' HH:mm tt");
-
-            string reciboCita = $"Emitido el: {fechaEmision}\n" +
-                "Atentamente,\n" +
-                "CLÍNICA MÉDICA SANAR BIEN\n";
-            recibo.label8.Text = reciboCita;
-            this.Hide();
-            recibo.Show();
-
-
-
-        }
+       
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -179,6 +185,7 @@ namespace WinFormsApp1.Desktop
 
             await CargarCitas();
             await CargarPacientes();
+            await CargarMedicosEnComboBoxAsync();
         }
 
         private async void button3_Click(object sender, EventArgs e)
@@ -290,6 +297,40 @@ namespace WinFormsApp1.Desktop
             }
         }
 
+        private async void btnGenerarReporte_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var todasLasCitas = await client.GetFromJsonAsync<List<CitaDesktop>>("api/Cita/Lista");
+
+                var fechaSeleccionada = dtpFiltroFecha.Value.Date;
+                var medicoIdSeleccionado = (int?)cmbFiltroMedico.SelectedValue;
+
+                var filtro = todasLasCitas
+                    .Where(c => c.Fecha.Date == fechaSeleccionada)
+                    .Where(c => medicoIdSeleccionado == null || c.MedicoId == medicoIdSeleccionado)
+                    .ToList();
+
+                dataGridView3.DataSource = filtro.Select(c => new
+                {
+                    c.Id,
+                    c.MotivoConsulta,
+                    Fecha = c.Fecha.Add(c.Hora).ToString("dd/MM/yyyy HH:mm"),
+                    Precio = c.PrecioConsulta.ToString("C"),
+                    Medico = c.Medico?.Nombre ?? "Sin médico"
+                }).ToList();
+
+                lblTotalCitas.Text = "Total de citas: " + filtro.Count;
+                lblTotalFacturado.Text = "Total facturado: " + filtro.Sum(c => c.PrecioConsulta).ToString("C");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar reporte: " + ex.Message);
+            }
+        }
+
+        
+
         private void button7_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
@@ -298,5 +339,37 @@ namespace WinFormsApp1.Desktop
             textBox4.Text = "";
             textBox5.Text = "";
         }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

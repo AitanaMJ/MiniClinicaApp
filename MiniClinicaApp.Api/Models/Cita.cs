@@ -14,6 +14,7 @@ namespace MiniClinicaApp.Api.Models
         public string MotivoConsulta { get; set; } = "";
 
         public DateTime Fecha { get; set; }
+        public TimeSpan Hora { get; set; }
 
         public decimal PrecioConsulta { get; set; }
 
