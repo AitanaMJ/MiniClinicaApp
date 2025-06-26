@@ -39,7 +39,7 @@ namespace MiniClinicaApp.Api.Controllers
             return Ok(pacientes);
         }
 
-        // GET: api/Paciente/Ver/5
+        // GET: api/Paciente/Ver/
         [HttpGet("Ver/{id}")]
         public async Task<IActionResult> VerPaciente(int id)
         {
@@ -52,7 +52,7 @@ namespace MiniClinicaApp.Api.Controllers
         }
 
 
-        // PUT: api/Paciente/Editar/5
+        // PUT: api/Paciente/Editar/
         [HttpPut("Editar/{id}")]
         public async Task<IActionResult> ActualizarPaciente(int id, [FromBody] Paciente paciente)
         {
@@ -73,7 +73,7 @@ namespace MiniClinicaApp.Api.Controllers
             return Ok(pacienteExistente);
         }
 
-        // DELETE: api/Paciente/Eliminar/5
+        // DELETE: api/Paciente/Eliminar/
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> EliminarPaciente(int id)
         {

@@ -22,7 +22,7 @@ namespace MiniClinicaApp.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // Opcional: verifica que el MedicoId exista antes de guardar
+            // verifica que el MedicoId exista antes de guardar
             var medicoExistente = await _context.Medicos.FindAsync(cita.MedicoId);
             if (medicoExistente == null)
                 return BadRequest($"No existe el médico con ID {cita.MedicoId}");
@@ -56,7 +56,7 @@ namespace MiniClinicaApp.Api.Controllers
 
        
 
-        // PUT: api/Cita/Editar/5
+        // PUT: api/Cita/Editar
         [HttpPut("Editar/{id}")]
         public async Task<IActionResult> ActualizarCita(int id, [FromBody] Cita cita)
         {

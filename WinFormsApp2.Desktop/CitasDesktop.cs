@@ -37,7 +37,7 @@ namespace MiniClinicaaApp2.Desktop
             try
             {
                 using HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("https://localhost:7032/"); // ajustá el puerto si es distinto
+                client.BaseAddress = new Uri("https://localhost:7032/"); // 
 
                 var medicos = await client.GetFromJsonAsync<List<MedicoDesktop>>("api/Medico");
 
@@ -47,7 +47,7 @@ namespace MiniClinicaaApp2.Desktop
                 cmbFiltroMedico.DataSource = medicos;
                 cmbFiltroMedico.DisplayMember = "Nombre";
                 cmbFiltroMedico.ValueMember = "Id";
-                cmbFiltroMedico.SelectedIndex = 0; // opción "Todos"
+               
             }
             catch (Exception ex)
             {
