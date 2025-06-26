@@ -105,7 +105,7 @@ namespace MiniClinicaaApp2.Desktop
             comboBoxMedicos.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBoxMedicos.FormattingEnabled = true;
             comboBoxMedicos.Items.AddRange(new object[] { "1. Dr Castillo", "2. Dra Hernandez", "3. Dr  Molina" });
-            comboBoxMedicos.Location = new Point(91, 62);
+            comboBoxMedicos.Location = new Point(131, 66);
             comboBoxMedicos.Name = "comboBoxMedicos";
             comboBoxMedicos.Size = new Size(121, 21);
             comboBoxMedicos.TabIndex = 10;
@@ -143,7 +143,7 @@ namespace MiniClinicaaApp2.Desktop
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Verdana", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label5.Location = new Point(33, 69);
+            label5.Location = new Point(73, 69);
             label5.Name = "label5";
             label5.Size = new Size(52, 13);
             label5.TabIndex = 15;
@@ -153,7 +153,7 @@ namespace MiniClinicaaApp2.Desktop
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Verdana", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label6.Location = new Point(285, 33);
+            label6.Location = new Point(286, 33);
             label6.Name = "label6";
             label6.Size = new Size(40, 13);
             label6.TabIndex = 16;
@@ -185,7 +185,7 @@ namespace MiniClinicaaApp2.Desktop
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Verdana", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label7.Location = new Point(285, 72);
+            label7.Location = new Point(288, 70);
             label7.Name = "label7";
             label7.Size = new Size(34, 13);
             label7.TabIndex = 28;
@@ -423,7 +423,7 @@ namespace MiniClinicaaApp2.Desktop
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Verdana", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label11.Location = new Point(463, 66);
+            label11.Location = new Point(463, 70);
             label11.Name = "label11";
             label11.Size = new Size(55, 13);
             label11.TabIndex = 30;
@@ -433,7 +433,7 @@ namespace MiniClinicaaApp2.Desktop
             // 
             comboBoxPacientes.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBoxPacientes.FormattingEnabled = true;
-            comboBoxPacientes.Location = new Point(521, 61);
+            comboBoxPacientes.Location = new Point(521, 66);
             comboBoxPacientes.Name = "comboBoxPacientes";
             comboBoxPacientes.Size = new Size(121, 21);
             comboBoxPacientes.TabIndex = 29;
